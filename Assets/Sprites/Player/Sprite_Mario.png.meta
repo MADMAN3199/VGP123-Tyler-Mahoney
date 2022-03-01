@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3d909b4b54be1b5498cbfe084937024e
+guid: 025fde8b164ee094fafb42376284992d
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -10,16 +10,16 @@ TextureImporter:
     second: Walk1
   - first:
       213: -3905991941800648080
-    second: Run1
+    second: Walk2
   - first:
       213: 1554904934580016266
     second: Sprite_Mario_3
   - first:
       213: -3171580361127328770
-    second: Walk 2
+    second: Sprite_Mario_4
   - first:
       213: -7207716073158996441
-    second: Run 2
+    second: Sprite_Mario_5
   - first:
       213: 5693412132100505836
     second: Sprite_Mario_6
@@ -145,13 +145,13 @@ TextureImporter:
     second: Sprite_Mario_46
   - first:
       213: 3302078408146908689
-    second: Attack1
+    second: MarioFire1
   - first:
       213: -4040994371160570336
-    second: Attack2
+    second: MarioFire2
   - first:
       213: 2070263079612885921
-    second: Attack3
+    second: MarioFire3
   - first:
       213: -5021473000565013323
     second: Sprite_Mario_50
@@ -270,6 +270,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -316,7 +328,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run1
+      name: Walk2
       rect:
         serializedVersion: 2
         x: 37
@@ -358,7 +370,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk 2
+      name: Sprite_Mario_4
       rect:
         serializedVersion: 2
         x: 71
@@ -379,7 +391,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Run 2
+      name: Sprite_Mario_5
       rect:
         serializedVersion: 2
         x: 88
@@ -1261,7 +1273,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack1
+      name: MarioFire1
       rect:
         serializedVersion: 2
         x: 61
@@ -1282,7 +1294,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack2
+      name: MarioFire2
       rect:
         serializedVersion: 2
         x: 79
@@ -1303,7 +1315,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack3
+      name: MarioFire3
       rect:
         serializedVersion: 2
         x: 97
