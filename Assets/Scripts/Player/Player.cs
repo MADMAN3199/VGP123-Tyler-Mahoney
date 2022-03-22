@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer), typeof(Animator))]
 public class Player : MonoBehaviour
 {
     public bool verbose = false;
     public bool isGrounded;
-
-
+    public AudioClip jumpSound;
+    public AudioMixerGroup soundFXGroup;
+    
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator anim;
-        
+    PlayerSounds ps;
+
+ 
+
     [SerializeField]
     float speed;
 
@@ -36,10 +42,11 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        ps = GetComponent<PlayerSounds>();
 
         if (speed <= 0)
         {
-            speed = 5.0f;
+            speed = 3.0f;
             if (verbose)
                 Debug.Log("Speed changed to default value of 5");
         }
@@ -85,6 +92,7 @@ public class Player : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             rb.AddForce(Vector2.up * jumpForce);
+            ps.Play(jumpSound, soundFXGroup);
         }
         
 
@@ -101,7 +109,7 @@ public class Player : MonoBehaviour
         anim.SetFloat("xVel", Mathf.Abs(hInput));
         anim.SetBool("isGrounded", isGrounded);
 
-        if (hInput > 0 && sr.flipX || hInput < 0 && !sr.flipX)
+        if (hInput < 0 && sr.flipX || hInput > 0 && !sr.flipX)
             sr.flipX = !sr.flipX;
         
     }
@@ -139,6 +147,19 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce);
             Destroy(col.gameObject);
 
+        }
+
+        if (col.gameObject.tag == "Finish")
+        {
+            SceneManager.LoadScene("WinScreen");
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Enemy")
+        {
+            GameManager.instance.lives--;
         }
     }
 }

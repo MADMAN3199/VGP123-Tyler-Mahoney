@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
     static GameManager _instance = null;
     public static GameManager instance
     {
@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         set
         {
             _score = value;
+            onScoreValueChange.Invoke(value);
             Debug.Log("Score Set To: " + score.ToString());
         }
     }
@@ -45,10 +46,12 @@ public class GameManager : MonoBehaviour
             if (_lives > maxLives)
                 _lives = maxLives;
 
+            onLifeValueChange.Invoke(value);
+
             if (_lives < 0)
             {
                 //gameover stuff here
-                SceneManager.LoadScene("Test");
+                SceneManager.LoadScene("Game Over");
 
             }
 
@@ -56,6 +59,9 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+    [HideInInspector]public UnityEvent<int> onLifeValueChange;
+    [HideInInspector]public UnityEvent<int> onScoreValueChange;
 
     [HideInInspector] public GameObject playerInstance;
     [HideInInspector] public Level currentLevel;
@@ -77,10 +83,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            if (SceneManager.GetActiveScene().name == "TitleScreen")
-                SceneManager.LoadScene("SampleScene");
+           if (SceneManager.GetActiveScene().name == "Game Over")
+                SceneManager.LoadScene("MainMenu");
+
+            if (SceneManager.GetActiveScene().name == "WinScreen")
+                SceneManager.LoadScene("MainMenu");
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -88,8 +97,14 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (SceneManager.GetActiveScene().name == "Test")
-                SceneManager.LoadScene("TitleScreen");
+            if (SceneManager.GetActiveScene().name == "Level")
+                SceneManager.LoadScene("MainMenu");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            if (SceneManager.GetActiveScene().name == "Level")
+                SceneManager.LoadScene("WinScreen");
         }
 
     }
@@ -98,5 +113,4 @@ public class GameManager : MonoBehaviour
     {
         playerInstance = Instantiate(playerPrefab, spawnLocation.position, spawnLocation.rotation);
     }
-
 }

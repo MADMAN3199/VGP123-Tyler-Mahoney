@@ -3,7 +3,12 @@ guid: 70f9cb247ceb79043919744e525941af
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - death: {fileID: 8300000, guid: 0b527b4d8e1a3634cb3a52336bd3683c, type: 3}
+  - soundFXGroup: {fileID: -3671356731522939645, guid: 5ec08cd39f1bbad49ace0c359cea4e5d, type: 2}
+  - playerPrefab: {instanceID: 0}
+  - playerInstance: {instanceID: 0}
+  - currentLevel: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
